@@ -17,7 +17,6 @@ jobs:
       matrix:
         version:
           - latest
-          - v0.2.2
     steps:
       -
         name: Checkout
