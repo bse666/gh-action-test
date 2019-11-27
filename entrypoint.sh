@@ -1,5 +1,9 @@
-#!/bin/sh -l
+#!/bin/bash
 
-echo "Hello $1"
-time=$(date)
-echo ::set-output name=time::$time
+if [[ "$PULSE_COOKIE_DATA" != "" ]]
+then
+    echo -ne $(echo $PULSE_COOKIE_DATA | sed -e 's/../\\x&/g') >$HOME/pulse.cookie
+    export PULSE_COOKIE=$HOME/pulse.cookie
+fi
+
+exec "$@"
